@@ -44,6 +44,7 @@ import java.util.concurrent.TimeoutException;
 public class PaymentsApi {
   String basePath = "https://api.blockchain.com/v3/exchange";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
+  private VolleyError error;
 
   public void addHeader(String key, String value) {
     getInvoker().addDefaultHeader(key, value);
@@ -515,7 +516,7 @@ public class PaymentsApi {
 
     // verify the required parameter 'currency' is set
     if (currency == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'currency' when calling getDepositAddress",
+      error = new VolleyError("Missing the required parameter 'currency' when calling getDepositAddress",
         new ApiException(400, "Missing the required parameter 'currency' when calling getDepositAddress"));
     }
 
